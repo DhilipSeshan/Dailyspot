@@ -1,0 +1,26 @@
+﻿doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap')
+  body.admin-body
+    nav.admin-nav
+      span.admin-brand Dailyspot Admin
+      a(href='/ds-admin-9x7k/dashboard') Dashboard
+      a(href='/ds-admin-9x7k/products') Products
+      a(href='/ds-admin-9x7k/orders') Orders
+      a(href='/ds-admin-9x7k/users') Users
+      a.admin-logout(href='/ds-admin-9x7k/logout') Logout
+    if success && success.length
+      .flash.flash-success
+        each msg in success
+          p= msg
+    if error && error.length
+      .flash.flash-error
+        each msg in error
+          p= msg
+    .admin-main
+      block content

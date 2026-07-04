@@ -1,0 +1,27 @@
+﻿extends layout
+
+block content
+  .checkout-page
+    h1(style='margin-bottom:24px;') Checkout
+    .order-summary
+      h3 Order Summary
+      each item in cart
+        .summary-row
+          span #{item.name} x #{item.qty}
+          span $#{(item.price * item.qty).toFixed(2)}
+      .summary-row.summary-total
+        span Total
+        span $#{total}
+    span.cod-badge Cash on Delivery -- Pay when you receive
+    form.form-card(action='/checkout', method='POST')
+      h2 Delivery Details
+      .form-group
+        label Full Name
+        input.form-control(type='text', name='full_name', placeholder='Your full name', required)
+      .form-group
+        label Phone Number
+        input.form-control(type='tel', name='phone', placeholder='+1 234 567 8900', required)
+      .form-group
+        label Delivery Address
+        textarea.form-control(name='address', rows='3', placeholder='House no, Street, City, Pincode', required)
+      button.btn.btn-primary.btn-block(type='submit') Place Order (COD)

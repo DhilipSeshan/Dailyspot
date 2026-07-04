@@ -1,0 +1,19 @@
+﻿extends ../layout
+
+block content
+  .orders-page
+    h1(style='margin-bottom:24px;') My Orders
+    if orders && orders.length
+      each order in orders
+        .order-card
+          .order-card-info
+            h3 Order ##{order.id}
+            p Placed on #{new Date(order.created_at).toLocaleDateString()}
+            p(style='margin-top:4px;') #{order.address}
+          div
+            span.status-badge(class='status-' + order.status)= order.status
+            p(style='font-weight:700; color:var(--green); margin-top:8px;') $#{parseFloat(order.total_amount).toFixed(2)}
+    else
+      .empty-state
+        p.empty-icon No orders yet.
+        a.btn.btn-green(href='/shop') Start Shopping

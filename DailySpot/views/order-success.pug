@@ -1,0 +1,29 @@
+﻿extends layout
+
+block content
+  .success-page
+    p.success-icon Order Confirmed!
+    h1 Your Order Has Been Placed!
+    p Thank you for your order. We will deliver it to you shortly.
+    .order-box
+      h3(style='margin-bottom:16px; font-size:1rem;') Order Details
+      .order-meta
+        p Order ID: ##{order.id}
+        p Name: #{order.full_name}
+        p Phone: #{order.phone}
+        p Address: #{order.address}
+        p
+          | Status:
+          span.status-badge.status-pending  #{order.status}
+        p Total: $#{parseFloat(order.total_amount).toFixed(2)}
+      if order.items && order.items.length
+        h4(style='margin-top:20px; margin-bottom:12px; font-size:.95rem;') Items Ordered
+        each item in order.items
+          .summary-row(style='display:flex; justify-content:space-between; font-size:.9rem; margin-bottom:6px;')
+            span #{item.product_name} x #{item.quantity}
+            span $#{(item.price * item.quantity).toFixed(2)}
+    p(style='color:var(--text-muted); font-size:.9rem; margin-bottom:20px;') Payment: Cash on Delivery
+    .hero-actions
+      a.btn.btn-green(href='/shop') Continue Shopping
+      if sessionUser
+        a.btn(href='/orders', style='border:2px solid var(--green); color:var(--green); padding:12px 28px; border-radius:8px; font-weight:600;') My Orders

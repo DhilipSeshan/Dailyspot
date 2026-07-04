@@ -1,0 +1,15 @@
+﻿extends ../layout
+
+block content
+  .auth-page
+  h1 Welcome Back 👋
+  p Sign in to your Dailyspot account
+  form.form-card(action='/auth/login', method='POST')
+    .form-group
+    label Email Address
+    input.form-control(type='email', name='email', placeholder='you@example.com', required)
+    .form-group
+    label Password
+    input.form-control(type='password', name='password', placeholder='Your password', required)
+    button.btn.btn-green.btn-block(type='submit') Login
+  p.auth-footer Don't have an account? #[a(href='/auth/register') Register here]

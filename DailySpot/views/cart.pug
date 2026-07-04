@@ -1,0 +1,40 @@
+﻿extends layout
+
+block content
+  .cart-page
+    h1(style='margin-bottom:24px;') Your Cart
+    if cart && cart.length
+      table.cart-table
+        thead
+          tr
+            th Image
+            th Product
+            th Price
+            th Qty
+            th Subtotal
+            th Remove
+        tbody
+          each item in cart
+            tr
+              td
+                img.cart-item-img(src=item.image_url, alt=item.name)
+              td= item.name
+              td $#{item.price.toFixed(2)}
+              td
+                form.qty-update-form(action='/cart/update', method='POST')
+                  input(type='hidden', name='productId', value=item.id)
+                  input(type='number', name='qty', value=item.qty, min='1')
+                  button.btn.btn-sm.btn-green(type='submit') Update
+              td $#{(item.price * item.qty).toFixed(2)}
+              td
+                form(action='/cart/remove', method='POST')
+                  input(type='hidden', name='productId', value=item.id)
+                  button.btn.btn-sm.btn-danger(type='submit') Remove
+      p.cart-total Total: $#{total}
+      .cart-actions
+        a(href='/shop', style='border:2px solid var(--green); color:var(--green); padding:10px 20px; border-radius:8px; font-weight:600;') Continue Shopping
+        a.btn.btn-primary(href='/checkout') Proceed to Checkout
+    else
+      .empty-state
+        p.empty-icon Your cart is empty.
+        a.btn.btn-green(href='/shop') Start Shopping

@@ -1,0 +1,53 @@
+﻿doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='preconnect', href='https://fonts.googleapis.com')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap')
+  body
+    nav.navbar
+      .nav-container
+        a.nav-brand(href='/') 🍎 Dailyspot
+        .nav-links
+          a(href='/') Home
+          a(href='/shop') Shop
+          if sessionUser
+            a(href='/orders') My Orders
+            a.nav-logout(href='/auth/logout') Logout (#{sessionUser.name})
+          else
+            a(href='/auth/login') Login
+            a.nav-btn(href='/auth/register') Register
+        a.nav-cart(href='/cart')
+          span 🛒
+          if cartCount > 0
+            span.cart-badge= cartCount
+
+    if success && success.length
+      .flash.flash-success
+        each msg in success
+          p= msg
+
+    if error && error.length
+      .flash.flash-error
+        each msg in error
+          p= msg
+
+    main
+      block content
+
+    footer.footer
+      .footer-container
+        .footer-brand
+          h3 🍎 Dailyspot
+          p Fresh fruits delivered to your doorstep.
+        .footer-links
+          h4 Quick Links
+          a(href='/shop') Shop
+          a(href='/cart') Cart
+          a(href='/auth/login') Login
+        .footer-bottom
+          p &copy; 2025 Dailyspot. All rights reserved.
+

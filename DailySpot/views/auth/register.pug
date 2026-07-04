@@ -1,0 +1,21 @@
+﻿extends ../layout
+
+block content
+  .auth-page
+    h1 Create Account
+    p Join Dailyspot to track your orders
+    form.form-card(action='/auth/register', method='POST')
+      .form-group
+        label Full Name
+        input.form-control(type='text', name='name', placeholder='Your full name', required)
+      .form-group
+        label Email Address
+        input.form-control(type='email', name='email', placeholder='you@example.com', required)
+      .form-group
+        label Password
+        input.form-control(type='password', name='password', placeholder='Create a password', required)
+      .form-group
+        label Confirm Password
+        input.form-control(type='password', name='confirm_password', placeholder='Repeat your password', required)
+      button.btn.btn-green.btn-block(type='submit') Create Account
+    p.auth-footer Already have an account? #[a(href='/auth/login') Login here]

@@ -1,0 +1,21 @@
+﻿extends ../layout
+
+block content
+  .detail-page
+    a(href='/shop', style='display:inline-block; margin-bottom:20px; color:var(--text-muted); font-size:.9rem;') Back to Shop
+    .detail-grid
+      .detail-img
+        img(src=product.image_url, alt=product.name)
+      .detail-info
+        p.detail-category= product.category_name
+        h1= product.name
+        p.detail-price $#{product.price.toFixed(2)}
+        p.detail-desc= product.description
+        if product.stock > 0
+          p.detail-stock.in In Stock (#{product.stock} available)
+          form.qty-form(action='/cart/add', method='POST')
+            input(type='hidden', name='productId', value=product.id)
+            input.qty-input(type='number', name='qty', value='1', min='1', max=product.stock)
+            button.btn.btn-primary(type='submit') Add to Cart
+        else
+          p.detail-stock.out Out of Stock

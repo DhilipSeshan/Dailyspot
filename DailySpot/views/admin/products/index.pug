@@ -1,0 +1,30 @@
+﻿extends ../layout
+
+block content
+  .admin-title(style='display:flex; justify-content:space-between; align-items:center;')
+    span Products
+    a.btn.btn-green(href='/ds-admin-9x7k/products/add') + Add Product
+  table.admin-table
+    thead
+      tr
+        th Image
+        th Name
+        th Category
+        th Price
+        th Stock
+        th Featured
+        th Actions
+    tbody
+      each p in products
+        tr
+          td
+            img(src=p.image_url, alt=p.name)
+          td= p.name
+          td= p.category_name
+          td $#{p.price.toFixed(2)}
+          td= p.stock
+          td= p.featured ? 'Yes' : 'No'
+          td.admin-actions
+            a.btn.btn-sm.btn-green(href='/ds-admin-9x7k/products/' + p.id + '/edit') Edit
+            form(action='/ds-admin-9x7k/products/' + p.id + '/delete', method='POST', style='display:inline')
+              button.btn.btn-sm.btn-danger(type='submit', onclick='return confirm("Delete this product?")') Delete

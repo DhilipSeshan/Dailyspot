@@ -1,0 +1,30 @@
+﻿extends ../layout
+
+block content
+  h2.admin-title All Orders
+  table.admin-table
+    thead
+      tr
+        th Order #
+        th Customer
+        th Phone
+        th Total
+        th Status
+        th Date
+        th Update
+    tbody
+      each o in orders
+        tr
+          td ##{o.id}
+          td= o.user_name || o.full_name
+          td= o.phone
+          td $#{parseFloat(o.total_amount).toFixed(2)}
+          td
+            span.status-badge(class='status-' + o.status)= o.status
+          td= new Date(o.created_at).toLocaleDateString()
+          td
+            form(action='/ds-admin-9x7k/orders/' + o.id + '/status', method='POST', style='display:flex; gap:6px;')
+              select.status-select(name='status')
+                each s in ['pending','confirmed','shipped','delivered','cancelled']
+                  option(value=s, selected=(s===o.status))= s
+              button.btn.btn-sm.btn-green(type='submit') Update

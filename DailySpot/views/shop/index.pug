@@ -1,0 +1,42 @@
+﻿extends ../layout
+
+block content
+  .shop-header
+    .shop-inner
+      h1(style='font-size:1.4rem; font-weight:700; margin-right:auto;') All Fruits
+      form.filter-form(action='/shop', method='GET')
+        select.filter-select(name='category', onchange='this.form.submit()')
+          option(value='') All Categories
+          each cat in categories
+            option(value=cat.id, selected=(activeCategory == cat.id))= cat.name
+        input.filter-input(type='text', name='search', placeholder='Search fruits...', value=search)
+        button.btn.btn-green(type='submit') Search
+
+  .section
+    if products && products.length
+      p.section-sub #{products.length} product(s) found
+      .product-grid
+        each product in products
+          .product-card
+            a(href=`/shop/${product.id}`)
+              img(src=product.image_url, alt=product.name, loading='lazy')
+            .card-body
+              p.card-category= product.category_name
+              h3.card-name= product.name
+              p.card-price $#{product.price.toFixed(2)}
+              p(style='font-size:.8rem; color:var(--text-muted); margin-bottom:10px;')
+                if product.stock > 0
+                  | In stock (#{product.stock})
+                else
+                  | Out of stock
+              .card-actions
+                a.btn.btn-sm.btn-green(href=`/shop/${product.id}`) View
+                if product.stock > 0
+                  form(action='/cart/add', method='POST', style='display:inline')
+                    input(type='hidden', name='productId', value=product.id)
+                    input(type='hidden', name='qty', value='1')
+                    button.btn.btn-sm.btn-primary(type='submit') Add to Cart
+    else
+      .empty-state
+        p.empty-icon No fruits found matching your search.
+        a.btn.btn-green(href='/shop') View All Fruits
