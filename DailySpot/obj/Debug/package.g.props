@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <PackageJsonName Condition="$(PackageJsonName) == ''">dailyspot</PackageJsonName>
+    <PackageJsonVersion Condition="$(PackageJsonVersion) == ''">1.0.0</PackageJsonVersion>
+    <PackageJsonPrivate Condition="$(PackageJsonPrivate) == ''">true</PackageJsonPrivate>
+    <PackageJsonScriptsStart Condition="$(PackageJsonScriptsStart) == ''">node ./bin/www</PackageJsonScriptsStart>
+    <PackageJsonScriptsSeed Condition="$(PackageJsonScriptsSeed) == ''">node ./scripts/seed.js</PackageJsonScriptsSeed>
+    <PackageJsonEnginesNode Condition="$(PackageJsonEnginesNode) == ''">&gt;=18.0.0</PackageJsonEnginesNode>
+    <PackageJsonDependenciesLibsqlClient Condition="$(PackageJsonDependenciesLibsqlClient) == ''">^0.14.0</PackageJsonDependenciesLibsqlClient>
+    <PackageJsonDependenciesBcryptjs Condition="$(PackageJsonDependenciesBcryptjs) == ''">^2.4.3</PackageJsonDependenciesBcryptjs>
+    <PackageJsonDependenciesConnectFlash Condition="$(PackageJsonDependenciesConnectFlash) == ''">^0.1.1</PackageJsonDependenciesConnectFlash>
+    <PackageJsonDependenciesCookieParser Condition="$(PackageJsonDependenciesCookieParser) == ''">^1.4.6</PackageJsonDependenciesCookieParser>
+    <PackageJsonDependenciesDebug Condition="$(PackageJsonDependenciesDebug) == ''">^2.6.9</PackageJsonDependenciesDebug>
+    <PackageJsonDependenciesDotenv Condition="$(PackageJsonDependenciesDotenv) == ''">^16.4.5</PackageJsonDependenciesDotenv>
+    <PackageJsonDependenciesExpress Condition="$(PackageJsonDependenciesExpress) == ''">^4.18.2</PackageJsonDependenciesExpress>
+    <PackageJsonDependenciesExpressSession Condition="$(PackageJsonDependenciesExpressSession) == ''">^1.18.0</PackageJsonDependenciesExpressSession>
+    <PackageJsonDependenciesHttpErrors Condition="$(PackageJsonDependenciesHttpErrors) == ''">^2.0.0</PackageJsonDependenciesHttpErrors>
+    <PackageJsonDependenciesMorgan Condition="$(PackageJsonDependenciesMorgan) == ''">^1.10.0</PackageJsonDependenciesMorgan>
+    <PackageJsonDependenciesPug Condition="$(PackageJsonDependenciesPug) == ''">^3.0.2</PackageJsonDependenciesPug>
+  </PropertyGroup>
+</Project>
