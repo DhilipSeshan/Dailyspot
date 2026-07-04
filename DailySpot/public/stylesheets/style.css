@@ -1,3 +1,21 @@
+/* ===== AUTH BANNER (HOME PAGE) ===== */
+.auth-banner { background: linear-gradient(135deg, #fff8f0, #f0faf4); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 40px 24px; }
+.auth-banner-inner { max-width: 700px; margin: 0 auto; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.auth-option { flex: 1; min-width: 220px; text-align: center; }
+.auth-option h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.auth-option p { color: var(--text-muted); font-size: .88rem; margin-bottom: 16px; }
+.auth-divider { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); font-weight: 700; font-size: .85rem; }
+.auth-divider span { background: var(--white); padding: 8px; border-radius: 50%; border: 2px solid var(--border); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+.btn-outline-dark { background: transparent; color: var(--text); border: 2px solid var(--text); border-radius: 8px; padding: 12px 28px; font-weight: 600; font-size: .95rem; display: inline-block; }
+.btn-outline-dark:hover { background: var(--text); color: var(--white); }
+
+/* ===== FEATURES ===== */
+.features-section { background: var(--green-light); padding: 40px 0; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 20px; }
+.feature-card { background: var(--white); border-radius: var(--radius); padding: 24px; text-align: center; box-shadow: var(--shadow); }
+.feature-card .feature-icon { font-size: 1rem; font-weight: 700; color: var(--green); margin-bottom: 8px; }
+.feature-card p { color: var(--text-muted); font-size: .88rem; }
+
 /* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 

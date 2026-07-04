@@ -2,54 +2,62 @@
 
 block content
   section.hero
-    h1 🍎 Fresh Fruits, Delivered Daily
+    h1 Fresh Fruits, Delivered Daily
     p Premium quality fruits sourced directly from farms to your door.
     .hero-actions
       a.btn.btn-primary(href='/shop') Shop Now
-      a.btn.btn-outline(href='/shop?featured=1') See What's Fresh
+      a.btn.btn-outline(href='/auth/register') Create Free Account
+
+  if !sessionUser
+    section.auth-banner
+      .auth-banner-inner
+        .auth-option
+          h3 New Customer?
+          p Create a free account to track your orders and enjoy a faster checkout.
+          a.btn.btn-green.btn-block(href='/auth/register') Sign Up Free
+        .auth-divider
+          span OR
+        .auth-option
+          h3 Already Have an Account?
+          p Welcome back! Sign in to view your orders and continue shopping.
+          a.btn.btn-outline-dark.btn-block(href='/auth/login') Sign In
 
   section.section
-    h2.section-title Featured Fruits
-    p.section-sub Handpicked fresh selections just for you
+    h2.section-title Fresh Picks Today
+    p.section-sub Handpicked fruits just for you
     if featured && featured.length
       .product-grid
         each product in featured
           .product-card
-            a(href=`/shop/${product.id}`)
+            a(href='/shop/' + product.id)
               img(src=product.image_url, alt=product.name, loading='lazy')
             .card-body
               p.card-category= product.category_name
               h3.card-name= product.name
               p.card-price $#{product.price.toFixed(2)}
               .card-actions
-                a.btn.btn-sm.btn-green(href=`/shop/${product.id}`) View
+                a.btn.btn-sm.btn-green(href='/shop/' + product.id) View
                 form(action='/cart/add', method='POST', style='display:inline')
                   input(type='hidden', name='productId', value=product.id)
                   input(type='hidden', name='qty', value='1')
-                  button.btn.btn-sm.btn-primary(type='submit') 🛒 Add
+                  button.btn.btn-sm.btn-primary(type='submit') Add to Cart
     else
       .empty-state
-        p.empty-icon 🌿
-        p No featured products yet. Run the seed script first!
+        p No products yet.
 
-  section.section(style='background: var(--green-light); margin: 0; max-width: 100%; padding: 40px 24px;')
-    .section(style='margin: 0 auto; padding: 0;')
-      h2.section-title Why Dailyspot?
-      .product-grid(style='grid-template-columns: repeat(auto-fit, minmax(180px,1fr));')
-        .product-card(style='text-align:center; padding: 24px;')
-          p(style='font-size:2rem;') 🌿
-          h4 Farm Fresh
-          p(style='color:var(--text-muted); font-size:.9rem;') Sourced directly from local farms
-        .product-card(style='text-align:center; padding: 24px;')
-          p(style='font-size:2rem;') 🚚
-          h4 Fast Delivery
-          p(style='color:var(--text-muted); font-size:.9rem;') Same-day delivery available
-        .product-card(style='text-align:center; padding: 24px;')
-          p(style='font-size:2rem;') 💰
-          h4 Best Prices
-          p(style='color:var(--text-muted); font-size:.9rem;') Wholesale prices for everyone
-        .product-card(style='text-align:center; padding: 24px;')
-          p(style='font-size:2rem;') 🤝
-          h4 Cash on Delivery
-          p(style='color:var(--text-muted); font-size:.9rem;') Pay only when you receive
-
+  section.features-section
+    .section
+      h2.section-title Why Choose Dailyspot?
+      .features-grid
+        .feature-card
+          p.feature-icon Farm Fresh
+          p Direct from local farms daily
+        .feature-card
+          p.feature-icon Fast Delivery
+          p Same-day delivery available
+        .feature-card
+          p.feature-icon Best Prices
+          p Wholesale prices for everyone
+        .feature-card
+          p.feature-icon Cash on Delivery
+          p Pay only when you receive

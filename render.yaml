@@ -2,9 +2,8 @@ services:
   - type: web
     name: dailyspot
     runtime: node
-    rootDir: DailySpot
-    buildCommand: npm install && npm run seed
-    startCommand: npm start
+    buildCommand: cd DailySpot && npm install && npm run seed
+    startCommand: cd DailySpot && npm start
     envVars:
       - key: NODE_ENV
         value: production
